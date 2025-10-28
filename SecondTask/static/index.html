@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Файлообменник</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Загрузить файл</h1>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+            <button type="submit">Загрузить</button>
+        </form>
+
+        <div id="status" class="hidden">Загрузка...</div>
+        <div id="result" class="hidden">
+            <p>Ссылка на скачивание:</p>
+            <a id="downloadLink" target="_blank"></a>
+            <button id="copyButton">Копировать ссылку</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
