@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>🌤️ Прогноз погоды</h1>
+    <div>
+        <input type="text" id="cityInput" placeholder="Введите город (например, Moscow)" />
+        <button onclick="loadWeather()">Показать погоду</button>
+    </div>
+    <div id="error" class="error"></div>
+    <div id="chartContainer">
+        <canvas id="chartCanvas"></canvas>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
