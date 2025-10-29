@@ -2,8 +2,6 @@ package ru.ilia.fileShare.config;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class AppConfig {
     public static final String UPLOAD_DIR = "uploads";
