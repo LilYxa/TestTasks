@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpServer;
 import ru.ilia.fileShare.config.AppConfig;
 import ru.ilia.fileShare.handler.DownloadHandler;
 import ru.ilia.fileShare.handler.StaticFileHandler;
+import ru.ilia.fileShare.handler.StatsHandler;
 import ru.ilia.fileShare.handler.UploadHandler;
 import ru.ilia.fileShare.model.FileData;
 import ru.ilia.fileShare.service.FileCleanUpService;
@@ -31,6 +32,7 @@ public class Main {
         server.createContext("/", new StaticFileHandler());
         server.createContext("/upload", new UploadHandler(fileRegistry));
         server.createContext("/download/", new DownloadHandler(fileRegistry));
+        server.createContext("/stats", new StatsHandler(fileRegistry));
         server.setExecutor(Executors.newFixedThreadPool(10));
         server.start();
 

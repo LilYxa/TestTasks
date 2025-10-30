@@ -32,6 +32,7 @@ document.getElementById('uploadForm').addEventListener('submit', (e) => {
             link.href = url;
             link.textContent = url;
             result.classList.remove('hidden');
+            refreshStats();
         } else {
             alert('Ошибка: сервер вернул статус ' + xhr.status);
         }
@@ -65,3 +66,47 @@ document.getElementById("copyButton").addEventListener('click', async () => {
         alert('Не удалось скопировать ссылку. Попробуйте вручную.');
     }
 });
+
+function formatBytes(bytes) {
+    if (!bytes || bytes <= 0) return '0 Б';
+    const k = 1024;
+    const sizes = ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function formatTime(ms) {
+    if (!ms || ms <= 0) return '-';
+    try {
+        return new Date(ms).toLocaleString();
+    } catch (_) {
+        return '-';
+    }
+}
+
+async function refreshStats() {
+    try {
+        const res = await fetch('/stats');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+
+        const totalFilesEl = document.getElementById('statTotalFiles');
+        const totalSizeEl = document.getElementById('statTotalSize');
+        const newestEl = document.getElementById('statNewest');
+        const lastAccessEl = document.getElementById('statLastAccess');
+
+        if (totalFilesEl) totalFilesEl.textContent = (data.fileCount ?? 0);
+        if (totalSizeEl) totalSizeEl.textContent = formatBytes(data.totalSizeBytes || 0);
+        if (newestEl) newestEl.textContent = formatTime(data.latestUploadTime);
+        if (lastAccessEl) lastAccessEl.textContent = formatTime(data.latestAccessTime);
+    } catch (e) {
+        console.error('Не удалось получить статистику', e);
+    }
+}
+
+const refreshBtn = document.getElementById('refreshStats');
+if (refreshBtn) {
+    refreshBtn.addEventListener('click', refreshStats);
+}
+refreshStats();
+setInterval(refreshStats, 15000);

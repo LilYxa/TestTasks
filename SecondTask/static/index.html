@@ -20,6 +20,31 @@
             <a id="downloadLink" target="_blank"></a>
             <button id="copyButton">Копировать ссылку</button>
         </div>
+
+        <hr>
+
+        <div id="stats">
+            <h2>Статистика</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="statTotalFiles">-</div>
+                    <div class="stat-label">Всего файлов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statTotalSize">-</div>
+                    <div class="stat-label">Общий размер</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statNewest">-</div>
+                    <div class="stat-label">Последняя загрузка</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statLastAccess">-</div>
+                    <div class="stat-label">Последний доступ</div>
+                </div>
+            </div>
+            <button id="refreshStats">Обновить статистику</button>
+        </div>
     </div>
 
     <script src="script.js"></script>

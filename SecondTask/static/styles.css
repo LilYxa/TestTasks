@@ -52,3 +52,35 @@ button:hover {
 #copyButton:hover {
     background-color: #1976D2;
 }
+
+#stats {
+    margin-top: 24px;
+    text-align: left;
+}
+
+#stats h2 {
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 12px 0 16px;
+}
+
+.stat-item {
+    background: #f0f4f8;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #555;
+    font-size: 12px;
+}
