@@ -3,6 +3,7 @@ package ru.ilia;
 import ru.ilia.liquidSort.models.Move;
 import ru.ilia.liquidSort.service.LiquidSortService;
 import ru.ilia.liquidSort.service.impl.LiquidSortServiceImpl;
+import ru.ilia.liquidSort.utils.ConsoleStateReader;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class Main {
 
         System.out.println("\nПример 3: Цвета как символы");
         exampleWithCharacters();
+
+        System.out.println("\nПример 4: Ввод состояния из консоли (строки)");
+        exampleFromConsole();
 
     }
 
@@ -120,4 +124,24 @@ public class Main {
             System.out.println();
         }
     }
+
+    private static void exampleFromConsole() {
+        String[][] initialState = ConsoleStateReader.readStateFromConsole(s -> s, 
+                len -> new String[len], 
+                len -> new String[len][]);
+        if (initialState == null) {
+            System.out.println("Не удалось прочитать состояние из консоли.");
+            return;
+        }
+
+        System.out.println("Начальное состояние (из консоли):");
+        printState(initialState);
+
+        LiquidSortService<String> solver = new LiquidSortServiceImpl<>();
+        List<Move> solution = solver.solve(initialState);
+
+        printSolutionResult(solution);
+    }
+
+    
 }
